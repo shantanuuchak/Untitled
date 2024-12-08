@@ -1,5 +1,3 @@
-import React from "react";
-
 function Header() {
   return (
     <header className="flex items-center gap-2 mb-8">

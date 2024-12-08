@@ -1,3 +1,5 @@
+import { IconFlareFilled } from "@tabler/icons-react";
+
 function Form() {
   return (
     <form className="flex flex-col gap-1">
@@ -56,9 +58,11 @@ function Form() {
         </label>
       </div>
 
-      {/* TODO: Add flare icon */}
-      <button type="submit" className="bg-zinc-950 text-white p-2 rounded-lg">
-        Let's get started!
+      <button
+        type="submit"
+        className="bg-zinc-950 text-white p-2 rounded-lg flex gap-1 justify-center"
+      >
+        Let's get started! <IconFlareFilled className="text-lime-600" />
       </button>
     </form>
   );
