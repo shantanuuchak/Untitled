@@ -8,7 +8,6 @@ import {
 } from "@tabler/icons-react";
 
 function Aside() {
-  // TODO: Add classification icons
   const features = [
     {
       id: 0,
@@ -22,7 +21,7 @@ function Aside() {
       title: "Visit us",
       description: "Come say hello at our office HQ",
       action: "100 Smith Street Collingwood VIC 3066 AU",
-      icons: <IconMap2 />,
+      icon: <IconMap2 />,
     },
     {
       id: 2,
