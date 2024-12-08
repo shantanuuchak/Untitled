@@ -1,4 +1,8 @@
-import React from "react";
+import {
+  IconBrandFacebook,
+  IconBrandX,
+  IconBrandLinkedin,
+} from "@tabler/icons-react";
 
 function Aside() {
   // TODO: Add classification icons
@@ -37,8 +41,17 @@ function Aside() {
         })}
       </div>
 
-      {/* TODO: Show Social Icons */}
-      <p>1</p>
+      <div className="flex gap-1 text-lime-600">
+        <a href="#">
+          <IconBrandFacebook />
+        </a>
+        <a href="#">
+          <IconBrandX />
+        </a>
+        <a href="#">
+          <IconBrandLinkedin />
+        </a>
+      </div>
     </section>
   );
 }

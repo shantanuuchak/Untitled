@@ -1,4 +1,3 @@
-import React from "react";
 import Header from "./components/Header.jsx";
 import Intro from "./components/Intro.jsx";
 import Aside from "./components/Aside.jsx";
