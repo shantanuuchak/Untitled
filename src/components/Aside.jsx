@@ -1,6 +1,6 @@
 import React from "react";
 
-function Info() {
+function Aside() {
   // TODO: Add classification icons
   const features = [
     {
@@ -24,7 +24,7 @@ function Info() {
   ];
 
   return (
-    <section className="flex flex-col justify-between min-h-screen">
+    <section className="flex flex-col justify-between h-full">
       <div>
         {features.map((feature) => {
           return (
@@ -43,4 +43,4 @@ function Info() {
   );
 }
 
-export default Info;
+export default Aside;

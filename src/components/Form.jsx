@@ -27,6 +27,7 @@ function Form() {
       />
 
       {/* Checkbox */}
+      {/* TODO: Style checkbox background to green on > medium screens */}
       <p className="text-zinc-800 mb-5">How can we help?</p>
       <div className="grid grid-cols-2 md:w-96 mb-8">
         <label className="flex gap-2 cursor-pointer">
@@ -55,6 +56,7 @@ function Form() {
         </label>
       </div>
 
+      {/* TODO: Add flare icon */}
       <button type="submit" className="bg-zinc-950 text-white p-2 rounded-lg">
         Let's get started!
       </button>
