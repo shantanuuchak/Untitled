@@ -14,21 +14,21 @@ function Aside() {
       title: "Chat to us",
       description: "Our friendly team",
       action: "hi@untitledui.com",
-      icon: <IconBrandLine />,
+      icon: <IconBrandLine className="text-green-950" />,
     },
     {
       id: 1,
       title: "Visit us",
       description: "Come say hello at our office HQ",
       action: "100 Smith Street Collingwood VIC 3066 AU",
-      icon: <IconMap2 />,
+      icon: <IconMap2 className="text-green-950" />,
     },
     {
       id: 2,
       title: "Call us",
       description: "Mon-Fri from 8am to 5pm.",
       action: "+1 (555) 000-0000",
-      icon: <IconPhone />,
+      icon: <IconPhone className="text-green-950" />,
     },
   ];
 
