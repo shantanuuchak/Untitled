@@ -3,7 +3,7 @@ import { IconFlareFilled } from "@tabler/icons-react";
 
 function Form() {
   const [input, setInput] = useState({
-    name: "",
+    username: "",
     email: "",
     message: "",
     abilities: [],
@@ -18,8 +18,14 @@ function Form() {
     "Other",
   ];
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    console.log(input);
+  };
+
   return (
-    <form className="flex flex-col gap-1">
+    <form className="flex flex-col gap-1" onSubmit={handleSubmit}>
       {/* Full Name Field */}
       <input
         type="text"
@@ -27,7 +33,9 @@ function Form() {
         id="user-name"
         placeholder="Your name"
         className="border-b border-stone-700 p-2 md:bg-lime-400 md:placeholder-gray-700"
-        value={input.name}
+        value={input.username}
+        onChange={(e) => setInput({ ...input, username: e.target.value })}
+        required
       />
       {/* Company Field */}
       <input
@@ -37,6 +45,8 @@ function Form() {
         placeholder="your@company.com"
         className="border-b border-stone-700 p-2 md:bg-lime-400 md:placeholder-gray-700"
         value={input.email}
+        onChange={(e) => setInput({ ...input, email: e.target.value })}
+        required
       />
       {/* Message */}
       <input
@@ -46,6 +56,8 @@ function Form() {
         placeholder="Tell us a little about your project..."
         className="border-b border-stone-700 p-2 h-24 mb-5 md:bg-lime-400 md:placeholder-gray-700"
         value={input.message}
+        onChange={(e) => setInput({ ...input, message: e.target.value })}
+        required
       />
 
       {/* Checkbox */}
@@ -56,12 +68,12 @@ function Form() {
           <label
             key={crypto.randomUUID()}
             className="flex gap-2 cursor-pointer"
+            checked={input.abilities.includes(option)}
+            onChange={(e) => {
+              console.log(e.target.checked);
+            }}
           >
-            <input
-              type="checkbox"
-              className="h-5 w-5"
-              checked={input.abilities.includes(option)}
-            />
+            <input type="checkbox" className="h-5 w-5" />
             {option}
           </label>
         ))}
