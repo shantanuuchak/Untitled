@@ -6,7 +6,7 @@ function Form() {
     username: "",
     email: "",
     message: "",
-    abilities: [],
+    abilities: [], // Holds the selected abilities
   });
 
   const helpOptions = [
@@ -20,8 +20,23 @@ function Form() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     console.log(input);
+  };
+
+  // Function to handle checkbox changes
+  const handleCheckboxChange = (e, option) => {
+    const isChecked = e.target.checked;
+
+    setInput((prevInput) => {
+      const updatedAbilities = isChecked
+        ? [...prevInput.abilities, option] // Add the option if checked
+        : prevInput.abilities.filter((ability) => ability !== option); // Remove if unchecked
+
+      return {
+        ...prevInput,
+        abilities: updatedAbilities, // Update the abilities array
+      };
+    });
   };
 
   return (
@@ -39,7 +54,7 @@ function Form() {
       />
       {/* Company Field */}
       <input
-        type="email "
+        type="email"
         name="user-email"
         id="user-email"
         placeholder="your@company.com"
@@ -61,19 +76,19 @@ function Form() {
       />
 
       {/* Checkbox */}
-      {/* TODO: Style checkbox background to green on > medium screens */}
       <p className="text-zinc-800 mb-5">How can we help?</p>
       <div className="grid grid-cols-2 md:w-96 mb-8">
         {helpOptions.map((option) => (
           <label
             key={crypto.randomUUID()}
             className="flex gap-2 cursor-pointer"
-            checked={input.abilities.includes(option)}
-            onChange={(e) => {
-              console.log(e.target.checked);
-            }}
           >
-            <input type="checkbox" className="h-5 w-5" />
+            <input
+              type="checkbox"
+              className="h-5 w-5"
+              checked={input.abilities.includes(option)} // Controlled checkbox state
+              onChange={(e) => handleCheckboxChange(e, option)} // Handle change
+            />
             {option}
           </label>
         ))}
