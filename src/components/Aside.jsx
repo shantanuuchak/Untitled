@@ -33,7 +33,7 @@ function Aside() {
   ];
 
   return (
-    <section className="flex flex-col justify-between h-full">
+    <section className="flex h-full flex-col justify-between">
       <div>
         {features.map((feature) => {
           return (
@@ -41,7 +41,7 @@ function Aside() {
               <h3 className="text-lg font-bold">
                 {feature.icon} {feature.title}
               </h3>
-              <p className="text-slate-700 mb-2">{feature.description}</p>
+              <p className="mb-2 text-slate-700">{feature.description}</p>
               <p>{feature.action}</p>
             </div>
           );
