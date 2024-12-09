@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { IconNorthStar, IconFlareFilled } from "@tabler/icons-react";
+import configs from "../utils/configs.js";
 
 function Form() {
   const [input, setInput] = useState({
-    username: "",
+    fullname: "",
     email: "",
     message: "",
-    abilities: [], // Holds the selected abilities
+    services: [],
   });
 
   const helpOptions = [
@@ -22,12 +23,12 @@ function Form() {
     e.preventDefault();
 
     const formData = new FormData();
-    formData.append("entry.116084554", input.username);
-    formData.append("entry.92462251", input.email);
-    formData.append("entry.1433673574", input.message);
-    formData.append("entry.143179646", input.abilities);
+    formData.append(configs.fullnameID, input.fullname);
+    formData.append(configs.email, input.email);
+    formData.append(configs.messageID, input.message);
+    formData.append(configs.services, input.services);
 
-    fetch(import.meta.env.VITE_GOOGLE_FORM, {
+    fetch(configs.formToken, {
       method: "POST",
       body: formData,
       mode: "no-cors", // Avoid CORS-related errors
@@ -41,13 +42,13 @@ function Form() {
     const isChecked = e.target.checked;
 
     setInput((prevInput) => {
-      const updatedAbilities = isChecked
-        ? [...prevInput.abilities, option] // Add the option if checked
-        : prevInput.abilities.filter((ability) => ability !== option); // Remove if unchecked
+      const updatedServices = isChecked
+        ? [...prevInput.services, option] // Add the option if checked
+        : prevInput.services.filter((service) => service !== option); // Remove if unchecked
 
       return {
         ...prevInput,
-        abilities: updatedAbilities, // Update the abilities array
+        services: updatedServices, // Update the services array
       };
     });
   };
@@ -69,8 +70,8 @@ function Form() {
           id="user-name"
           placeholder="Your name"
           className="border-b border-stone-700 p-2 md:bg-lime-400 md:placeholder-gray-700"
-          value={input.username}
-          onChange={(e) => setInput({ ...input, username: e.target.value })}
+          value={input.fullname}
+          onChange={(e) => setInput({ ...input, fullname: e.target.value })}
           required
         />
         {/* Company Field */}
@@ -107,7 +108,7 @@ function Form() {
               <input
                 type="checkbox"
                 className="h-5 w-5"
-                checked={input.abilities.includes(option)} // Controlled checkbox state
+                checked={input.services.includes(option)} // Controlled checkbox state
                 onChange={(e) => handleCheckboxChange(e, option)} // Handle change
               />
               {option}
