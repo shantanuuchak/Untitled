@@ -1,8 +1,11 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { IconNorthStar, IconFlareFilled } from "@tabler/icons-react";
 import configs from "../utils/configs.js";
 
 function Form() {
+  const navigate = useNavigate();
+
   const [input, setInput] = useState({
     fullname: "",
     email: "",
@@ -33,7 +36,7 @@ function Form() {
       body: formData,
       mode: "no-cors", // Avoid CORS-related errors
     })
-      .then(() => alert("Form submitted successfully!"))
+      .then(() => navigate("/submission"))
       .catch(() => alert("Failed to submit the form."));
   };
 

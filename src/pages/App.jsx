@@ -1,6 +1,6 @@
-import Header from "./components/Header.jsx";
-import Aside from "./components/Aside.jsx";
-import Form from "./components/Form.jsx";
+import Header from "../components/Header.jsx";
+import Aside from "../components/Aside.jsx";
+import Form from "../components/Form.jsx";
 
 function App() {
   return (
