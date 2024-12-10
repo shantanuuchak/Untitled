@@ -14,21 +14,21 @@ function Aside() {
       title: "Chat to us",
       description: "Our friendly team",
       action: "hi@untitledui.com",
-      icon: <RiChat3Line size={25} className="text-green-950" />,
+      icon: <RiChat3Line size={25} className="text-lime-800" />,
     },
     {
       id: 1,
       title: "Visit us",
       description: "Come say hello at our office HQ",
       action: "100 Smith Street Collingwood VIC 3066 AU",
-      icon: <RiMap2Fill size={25} className="text-green-950" />,
+      icon: <RiMap2Fill size={25} className="text-lime-800" />,
     },
     {
       id: 2,
       title: "Call us",
       description: "Mon-Fri from 8am to 5pm.",
       action: "+1 (555) 000-0000",
-      icon: <RiPhoneLine size={25} className="text-green-950" />,
+      icon: <RiPhoneLine size={25} className="text-lime-800" />,
     },
   ];
 
@@ -48,7 +48,7 @@ function Aside() {
         })}
       </div>
 
-      <div className="flex gap-1 text-lime-600">
+      <div className="flex gap-1 text-lime-700">
         <a href="#">
           <RiFacebookCircleLine size={25} />
         </a>
