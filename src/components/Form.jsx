@@ -26,23 +26,36 @@ function Form() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const formData = new FormData();
-    formData.append(configs.fullnameID, input.fullname);
-    formData.append(configs.email, input.email);
-    formData.append(configs.messageID, input.message);
-    formData.append(configs.services, input.services);
+    const inputStr = `${input.fullname} ${input.email} ${input.message} ${input.services}`;
 
-    const finalStr = `${input.fullname} ${input.email} ${input.message} ${input.services}`;
+    checkProfanity(inputStr).then((data) => {
+      console.log(data);
+      if (data.isProfanity) {
+        return navigate("/error", {
+          state: { flaggedFor: data.flaggedFor },
+        });
+      }
 
-    checkProfanity(finalStr).then((data) => console.log(data));
+      const formData = new FormData();
+      formData.append(configs.fullnameID, input.fullname);
+      formData.append(configs.email, input.email);
+      formData.append(configs.messageID, input.message);
+      formData.append(configs.services, input.services);
 
-    fetch(configs.formToken, {
-      method: "POST",
-      body: formData,
-      mode: "no-cors", // Avoid CORS-related errors
-    })
-      // .then(() => navigate("/submission"))
-      .catch(() => alert("Failed to submit the form."));
+      fetch(configs.formToken, {
+        method: "POST",
+        body: formData,
+        mode: "no-cors", // Avoid CORS-related errors
+      })
+        // .then(() => navigate("/submission"))
+        .catch(() => alert("Failed to submit the form."));
+
+      navigate("/submission", {
+        state: {
+          name: input.fullname,
+        },
+      });
+    });
   };
 
   // Function to handle checkbox changes
