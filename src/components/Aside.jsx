@@ -1,48 +1,48 @@
 import {
-  IconBrandFacebook,
-  IconBrandX,
-  IconBrandLinkedin,
-  IconBrandLine,
-  IconMap2,
-  IconPhone,
-} from "@tabler/icons-react";
+  RiFacebookCircleLine,
+  RiTwitterXLine,
+  RiLinkedinBoxLine,
+  RiMap2Fill,
+  RiPhoneLine,
+  RiChat3Line,
+} from "react-icons/ri";
 
 function Aside() {
-  const features = [
+  const contactInfo = [
     {
       id: 0,
       title: "Chat to us",
       description: "Our friendly team",
       action: "hi@untitledui.com",
-      icon: <IconBrandLine className="text-green-950" />,
+      icon: <RiChat3Line size={25} className="text-green-950" />,
     },
     {
       id: 1,
       title: "Visit us",
       description: "Come say hello at our office HQ",
       action: "100 Smith Street Collingwood VIC 3066 AU",
-      icon: <IconMap2 className="text-green-950" />,
+      icon: <RiMap2Fill size={25} className="text-green-950" />,
     },
     {
       id: 2,
       title: "Call us",
       description: "Mon-Fri from 8am to 5pm.",
       action: "+1 (555) 000-0000",
-      icon: <IconPhone className="text-green-950" />,
+      icon: <RiPhoneLine size={25} className="text-green-950" />,
     },
   ];
 
   return (
     <section className="flex h-full flex-col justify-between">
       <div>
-        {features.map((feature) => {
+        {contactInfo.map((info) => {
           return (
-            <div key={feature.id} className="mb-5">
+            <div key={info.id} className="mb-5">
               <h3 className="text-lg font-bold">
-                {feature.icon} {feature.title}
+                {info.icon} {info.title}
               </h3>
-              <p className="mb-2 text-slate-700">{feature.description}</p>
-              <p>{feature.action}</p>
+              <p className="mb-2 text-slate-700">{info.description}</p>
+              <p>{info.action}</p>
             </div>
           );
         })}
@@ -50,13 +50,13 @@ function Aside() {
 
       <div className="flex gap-1 text-lime-600">
         <a href="#">
-          <IconBrandFacebook />
+          <RiFacebookCircleLine size={25} />
         </a>
         <a href="#">
-          <IconBrandX />
+          <RiTwitterXLine size={25} />
         </a>
         <a href="#">
-          <IconBrandLinkedin />
+          <RiLinkedinBoxLine size={25} />
         </a>
       </div>
     </section>

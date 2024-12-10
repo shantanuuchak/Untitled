@@ -1,5 +1,4 @@
 import Header from "../components/Header";
-import configs from "../utils/configs";
 
 function Submission() {
   return (

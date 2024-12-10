@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { IconNorthStar, IconFlareFilled } from "@tabler/icons-react";
+import { RiSparkling2Fill, RiMagicLine } from "react-icons/ri";
 import configs from "../utils/configs.js";
+import checkProfanity from "../utils/checkProfanity.js";
 
 function Form() {
   const navigate = useNavigate();
@@ -31,12 +32,16 @@ function Form() {
     formData.append(configs.messageID, input.message);
     formData.append(configs.services, input.services);
 
+    const finalStr = `${input.fullname} ${input.email} ${input.message} ${input.services}`;
+
+    checkProfanity(finalStr).then((data) => console.log(data));
+
     fetch(configs.formToken, {
       method: "POST",
       body: formData,
       mode: "no-cors", // Avoid CORS-related errors
     })
-      .then(() => navigate("/submission"))
+      // .then(() => navigate("/submission"))
       .catch(() => alert("Failed to submit the form."));
   };
 
@@ -59,7 +64,8 @@ function Form() {
   return (
     <>
       <h1 className="mb-5 text-3xl font-semibold">
-        Got Ideas? <IconNorthStar className="inline-block" /> We've got <br />
+        Got Ideas? <RiMagicLine className="inline-block text-gray-950" /> We've
+        got <br />
         the skills. Let's team up.
       </h1>
       <p className="mb-6 text-xl">
@@ -121,9 +127,10 @@ function Form() {
 
         <button
           type="submit"
-          className="flex justify-center gap-1 rounded-lg bg-zinc-950 p-2 text-white"
+          className="flex items-center justify-center gap-2 rounded-lg bg-zinc-950 p-2 text-white"
         >
-          Let's get started! <IconFlareFilled className="text-lime-600" />
+          Let's get started!{" "}
+          <RiSparkling2Fill className="text-lime-600" size={20} />
         </button>
       </form>
     </>
