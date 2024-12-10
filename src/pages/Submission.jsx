@@ -1,5 +1,10 @@
+import { useLocation } from "react-router-dom";
 import Header from "@/components/Header";
+
 function Submission() {
+  const location = useLocation();
+  const { name } = location.state || {};
+
   return (
     <div className="items-between flex min-h-screen flex-col bg-zinc-50 px-4 py-3 md:px-8">
       <Header />
@@ -7,8 +12,8 @@ function Submission() {
       <main className="grid grid-cols-8">
         <div className="col-span-full rounded-lg bg-lime-400 px-4 py-4">
           <h1 className="text-3xl">Form Submission Successful!</h1>
-          {/* // TODO: Add submission name message */}
-          <p className="mb-10">Your form is submitted successfully!</p>
+          <p>{name} your form is submitted successfully!</p>
+          <img src="success.png" className="my-10 w-48 rounded-lg" />
           <p className="text-xl text-stone-600">
             View all submissions{" "}
             <a

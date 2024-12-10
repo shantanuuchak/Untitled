@@ -13,13 +13,14 @@ function Error() {
         <div className="col-span-full rounded-lg bg-red-300 px-4 py-4">
           <h1 className="text-3xl">Form Submission Error!</h1>
           <p className="mb-10">
-            Your form contains some profanity as it matches:
+            Your form is flagged and can't be submitted as it matches:
             <span className="text-bold text-lg text-black">[{flaggedFor}]</span>
             !
           </p>
-          {/* // TODO: Add error message */}
+          <img src="error.png" className="my-10 w-48 rounded-lg" />
+
           <p className="text-xl text-stone-100">
-            Go back to fill form{" "}
+            Go back to fill the form again{" "}
             <Link to="/" className="text-blue-800">
               here
             </Link>
