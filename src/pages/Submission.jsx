@@ -1,5 +1,5 @@
 import Header from "../components/Header";
-
+// TODO: Add submission message
 function Submission() {
   return (
     <div className="items-between flex min-h-screen flex-col bg-zinc-50 px-4 py-3 md:px-8">
@@ -8,6 +8,7 @@ function Submission() {
       <main className="grid grid-cols-8">
         <div className="col-span-full rounded-lg bg-lime-400 px-4 py-4">
           <h1 className="text-3xl">Form Submission Successful!</h1>
+          <p className="mb-10">Your form is submitted successfully!</p>
           <p className="text-xl text-stone-600">
             View all submissions{" "}
             <a
