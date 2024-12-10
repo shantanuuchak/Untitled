@@ -1,9 +1,11 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import App from "./pages/App.jsx";
-import Submission from "./pages/Submission.jsx";
-import Error from "./pages/Error.jsx";
+// Pages
+import App from "@/pages/App.jsx";
+import Submission from "@/pages/Submission.jsx";
+import Error from "@/pages/Error.jsx";
+// CSS
 import "./index.css";
 
 createRoot(document.getElementById("root")).render(

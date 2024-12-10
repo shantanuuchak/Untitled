@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import Header from "../components/Header";
+import Header from "@/components/Header";
 function Error() {
   return (
     <div className="items-between flex min-h-screen flex-col bg-zinc-50 px-4 py-3 md:px-8">
