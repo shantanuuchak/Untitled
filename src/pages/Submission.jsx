@@ -12,8 +12,8 @@ function Submission() {
       <main className="grid grid-cols-8">
         <div className="col-span-full rounded-lg bg-lime-400 px-4 py-4">
           <h1 className="text-3xl">Form Submission Successful!</h1>
-          <p>{name} your form is submitted successfully!</p>
-          <img src="success.png" className="my-10 w-48 rounded-lg" />
+          <p className="mb-10">{name} your form is submitted successfully!</p>
+
           <p className="text-xl text-stone-600">
             View all submissions{" "}
             <a

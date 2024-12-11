@@ -1,5 +1,5 @@
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
 import { RiSparkling2Fill } from "react-icons/ri";
 import Intro from "@/components/Intro";
 import configs from "@/utils/configs.js";
@@ -8,14 +8,13 @@ import checkProfanity from "@/utils/checkProfanity.js";
 function Form() {
   const navigate = useNavigate();
 
-  const [input, setInput] = useState({
-    fullname: "",
-    email: "",
-    message: "",
-    services: [],
-  });
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
-  const helpOptions = [
+  const services = [
     "Website Design",
     "Content",
     "UX Design",
@@ -24,24 +23,23 @@ function Form() {
     "Other",
   ];
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleFormSubmit = (e) => {
+    console.log("Form submitted");
 
-    const inputStr = `${input.fullname} ${input.email} ${input.message} ${input.services}`;
-
-    checkProfanity(inputStr).then((data) => {
-      console.log(data);
+    // Check for prafanity
+    checkProfanity(e.message).then((data) => {
       if (data.isProfanity) {
         return navigate("/error", {
           state: { flaggedFor: data.flaggedFor },
         });
       }
 
+      // Submit form information to Google Forms
       const formData = new FormData();
-      formData.append(configs.fullnameID, input.fullname);
-      formData.append(configs.email, input.email);
-      formData.append(configs.messageID, input.message);
-      formData.append(configs.services, input.services);
+      formData.append(configs.fullnameID, e.fullname);
+      formData.append(configs.email, e.email);
+      formData.append(configs.messageID, e.message);
+      formData.append(configs.services, e.services);
 
       fetch(configs.formToken, {
         method: "POST",
@@ -53,90 +51,73 @@ function Form() {
 
       navigate("/submission", {
         state: {
-          name: input.fullname,
+          name: e.fullname,
         },
       });
-    });
-  };
-
-  // Function to handle checkbox changes
-  const handleCheckboxChange = (e, option) => {
-    const isChecked = e.target.checked;
-
-    setInput((prevInput) => {
-      const updatedServices = isChecked
-        ? [...prevInput.services, option] // Add the option if checked
-        : prevInput.services.filter((service) => service !== option); // Remove if unchecked
-
-      return {
-        ...prevInput,
-        services: updatedServices, // Update the services array
-      };
     });
   };
 
   return (
     <>
       <Intro />
-      <form className="flex flex-col gap-1" onSubmit={handleSubmit}>
-        {/* Full Name Field */}
+
+      <form
+        className="flex flex-col gap-1"
+        onSubmit={handleSubmit(handleFormSubmit)}
+      >
+        {/* FullName */}
         <input
           type="text"
-          name="user-name"
-          id="user-name"
+          name="fullname"
+          id="fullname"
           placeholder="Your name"
           className="border-b border-stone-700 p-2 md:bg-lime-400 md:placeholder-gray-700"
-          value={input.fullname}
-          onChange={(e) => setInput({ ...input, fullname: e.target.value })}
-          required
+          {...register("fullname")}
         />
-        {/* Company Field */}
+        {/* Email */}
         <input
           type="email"
-          name="user-email"
-          id="user-email"
+          name="email"
+          id="email"
           placeholder="your@company.com"
           className="border-b border-stone-700 p-2 md:bg-lime-400 md:placeholder-gray-700"
-          value={input.email}
-          onChange={(e) => setInput({ ...input, email: e.target.value })}
-          required
+          {...register("email")}
         />
         {/* Message */}
         <input
           type="text"
-          name="user-message"
-          id="user-message"
+          name="message"
+          id="message"
           placeholder="Tell us a little about your project..."
           className="mb-5 h-24 border-b border-stone-700 p-2 md:bg-lime-400 md:placeholder-gray-700"
-          value={input.message}
-          onChange={(e) => setInput({ ...input, message: e.target.value })}
-          required
+          {...register("message")}
         />
 
         {/* Checkbox */}
         <p className="mb-5 text-zinc-800">How can we help?</p>
         <div className="mb-8 grid grid-cols-2 md:w-96">
-          {helpOptions.map((option) => (
+          {services.map((service, index) => (
             <label
-              key={crypto.randomUUID()}
-              className="flex cursor-pointer gap-2"
+              key={service + index}
+              className="flex cursor-pointer items-center gap-2"
             >
               <input
                 type="checkbox"
                 className="h-5 w-5"
-                checked={input.services.includes(option)} // Controlled checkbox state
-                onChange={(e) => handleCheckboxChange(e, option)} // Handle change
+                value={service}
+                {...register("services")}
               />
-              {option}
+              {service}
             </label>
           ))}
         </div>
 
+        {/* Submit */}
         <button
           type="submit"
           className="flex items-center justify-center gap-2 rounded-lg bg-zinc-950 p-2 text-white"
         >
-          Let's get started!{" "}
+          Let's get started!
           <RiSparkling2Fill className="text-lime-600" size={20} />
         </button>
       </form>
