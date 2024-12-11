@@ -12,7 +12,14 @@ function Form() {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    defaultValues: {
+      fullname: "",
+      email: "",
+      message: "",
+      services: [],
+    },
+  });
 
   const services = [
     "Website Design",
@@ -72,8 +79,14 @@ function Form() {
           id="fullname"
           placeholder="Your name"
           className="border-b border-stone-700 p-2 md:bg-lime-400 md:placeholder-gray-700"
-          {...register("fullname")}
+          {...register("fullname", {
+            required: "Please enter fullname",
+          })}
         />
+        {errors.fullname && (
+          <p className="text-red-600">{errors.fullname.message}</p>
+        )}
+
         {/* Email */}
         <input
           type="email"
@@ -81,8 +94,12 @@ function Form() {
           id="email"
           placeholder="your@company.com"
           className="border-b border-stone-700 p-2 md:bg-lime-400 md:placeholder-gray-700"
-          {...register("email")}
+          {...register("email", {
+            required: "Please enter email address",
+          })}
         />
+        {errors.email && <p className="text-red-600">{errors.email.message}</p>}
+
         {/* Message */}
         <input
           type="text"
@@ -90,8 +107,13 @@ function Form() {
           id="message"
           placeholder="Tell us a little about your project..."
           className="mb-5 h-24 border-b border-stone-700 p-2 md:bg-lime-400 md:placeholder-gray-700"
-          {...register("message")}
+          {...register("message", {
+            required: "Please enter message",
+          })}
         />
+        {errors.message && (
+          <p className="text-red-600">{errors.message.message}</p>
+        )}
 
         {/* Checkbox */}
         <p className="mb-5 text-zinc-800">How can we help?</p>
@@ -105,11 +127,16 @@ function Form() {
                 type="checkbox"
                 className="h-5 w-5"
                 value={service}
-                {...register("services")}
+                {...register("services", {
+                  required: "Please select atleast one",
+                })}
               />
               {service}
             </label>
           ))}
+          {errors.services && (
+            <p className="text-red-600">{errors.services.message}</p>
+          )}
         </div>
 
         {/* Submit */}
