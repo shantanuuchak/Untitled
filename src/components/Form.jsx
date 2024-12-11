@@ -46,14 +46,14 @@ function Form() {
         body: formData,
         mode: "no-cors", // Avoid CORS-related errors
       })
-        // .then(() => navigate("/submission"))
+        .then(() =>
+          navigate("/submission", {
+            state: {
+              name: e.fullname,
+            },
+          }),
+        )
         .catch(() => alert("Failed to submit the form."));
-
-      navigate("/submission", {
-        state: {
-          name: e.fullname,
-        },
-      });
     });
   };
 
