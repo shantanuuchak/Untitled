@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { RiSparkling2Fill, RiMagicLine } from "react-icons/ri";
-import configs from "../utils/configs.js";
-import checkProfanity from "../utils/checkProfanity.js";
+import { RiSparkling2Fill } from "react-icons/ri";
+import Intro from "@/components/Intro";
+import configs from "@/utils/configs.js";
+import checkProfanity from "@/utils/checkProfanity.js";
 
 function Form() {
   const navigate = useNavigate();
@@ -76,14 +77,7 @@ function Form() {
 
   return (
     <>
-      <h1 className="mb-5 text-3xl font-semibold">
-        Got Ideas? <RiMagicLine className="inline-block text-gray-950" /> We've
-        got <br />
-        the skills. Let's team up.
-      </h1>
-      <p className="mb-6 text-xl">
-        Tell us more about yourself and what's on your mind.
-      </p>
+      <Intro />
       <form className="flex flex-col gap-1" onSubmit={handleSubmit}>
         {/* Full Name Field */}
         <input
